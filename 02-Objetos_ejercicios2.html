@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <div class="col-12">
+        <h4>
+          Función que retorna la cantidad de peliculas en el idioma ingles "en"
+          * Hint: filter
+        </h4>
+        <code>
+          const peliculaIngles = () => { let arregloDeLasPelis =
+          peliculas.filter((pelicula) => { if (pelicula["original_language"] ===
+          "en") { return pelicula; } }); return arregloDeLasPelis.length; };
+          console.log(`Las pelis en ingles es ${peliculaIngles()}`);
+        </code>
+
+        <h4>
+          Función que imprime los géneros que tienen una pelicula. * Como,
+          parámetro, pasar el título (original_title de la película) * @param
+          {*} title
+        </h4>
+        <code>
+          const printGenesByTitleMovie = (title) => { const objPelicula =
+          peliculas.find((peli) => { if (peli.original_title === title) { return
+          peli; } }); if (objPelicula) { objPelicula.genre_ids.forEach((id) => {
+          const objgenero = generos.forEach((gen) => { if (gen.id === id) {
+          return gen; } }); if (objgenero) { console.log(`El genero de la peli
+          es ${objgenero.name}`); } }); } }; printGenesByTitleMovie("After We
+          Collided");
+        </code>
+        <h4>
+          Función que imprime las peliculas que tengan * la mayor y menor
+          cantidad de votos (vote_count)
+        </h4>
+        <code>
+          const mayorYMenor = () => { let mayor = 0; let pelisMayor = ""; let
+          menor = peliculas[0].vote_count; let pelisMenor = "";
+          peliculas.forEach((peli)=>{ if(peli.vote_count > mayor){ mayor =
+          peli.vote_count; pelisMayor = peli.original_title; } })
+          console.log(`La pelicula preferida es ${pelisMayor} con ${mayor}
+          votos`) peliculas.forEach((pelimenor)=>{ if(pelimenor.vote_count <
+          menor){ pelisMenor = pelimenor.original_title; menor =
+          pelisMenor.vote_count; } }) console.log(`La pelicula menos votada es
+          ${pelisMenor} con ${menor} votos`) } mayorYMenor();
+        </code>
+        <h4>
+          Función que imprime las peliculas (objetos) que tengan la mayor *
+          cantidad de géneros. * Por ejemplo, si la pelicula que más géneros
+          tenga es 5 GÉNEROs, * mostrar todas las películas que tengan 5 géneros
+        </h4>
+        <code>
+          const mayorCantidadDeGeneros = () => { let mayor = 0;
+          peliculas.forEach((peli)=>{ if(peli.genre_ids.length > mayor) mayor =
+          peli.genre_ids.length; }) const pelisMayorCantidad =
+          peliculas.filter((pelis)=>{ if(pelis.genre_ids.length === mayor){
+          return pelis } }) console.log(pelisMayorCantidad) }
+          mayorCantidadDeGeneros();
+        </code>
+        <h4>
+          Función que retorna un ARREGLO DE PELICULAS con cada objeto que tenga
+          * el atributo "generos" que va a ser un arreglo de strings con los
+          generos de la * película * ejemplo: *
+          generos:["drama","acción","aventura"] * OJO: cada objeto película debe
+          tener todos los atributos originales del arreglo * "peliculas" más el
+          atributo géneros * HINT: usar "map"
+        </h4>
+        <code>
+          const peliculasConGeneros = () => { const arregloNuevo =
+          peliculas.map((pelis)=> { pelis.generos = [];
+          pelis.genre_ids.forEach((ids)=>{ generos.find((gen)=>{ if(gen.id ===
+          ids){ pelis.generos.push(gen.name); } }) }) return pelis }) return
+          arregloNuevo } console.log(peliculasConGeneros())
+        </code>
+      </div>
+    </main>
+
+    <script src="./02-Objetos_ejercicios2.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
